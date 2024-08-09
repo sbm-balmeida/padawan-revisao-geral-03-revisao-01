@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 20px;
+    left: 17%;
+    width: 67%;
+}
+
+.filtro {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.formulario  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.botoes {
+    display: flex;
+    flex-direction: row;
+    padding: 0 0 15px 0;
+}
+
+.botao_editar {
+    padding-right: 20px;
+}
+
+ul {
+    list-style: none;
+    width: 100%;
+    padding: 0%;
+    padding-top: 20px;
+}
+
+li {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.botao_add_livro {
+    margin-top: 20px;
+}
+
+.formulario_adicionar {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    padding-top: 15px;
+}
+
+th {
+    text-align: left;
+}
+
+table {
+    padding-top: 20px;
+}

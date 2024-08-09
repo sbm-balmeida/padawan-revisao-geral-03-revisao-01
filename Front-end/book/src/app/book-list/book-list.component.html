@@ -1,0 +1,94 @@
+<div class="container">
+  <h2>Book</h2>
+
+  <div>
+    <h3>Buscar livro</h3>
+    <form (ngSubmit)="searchBooks()" class="formulario">
+      <label>ISBN:
+        <input [(ngModel)]="searchParams.isbn" name="isbn">
+      </label>
+      <label>Páginas:
+        <input [(ngModel)]="searchParams.pages" name="pages">
+      </label>
+      <label>Capa:
+        <input [(ngModel)]="searchParams.cover" name="cover" type="text">
+      </label>
+      <label>Registro:
+        <input [(ngModel)]="searchParams.register" name="register"
+          type="datetime-local">
+      </label>
+      <button type="button" (click)="clearFilters()">Limpar</button>
+      <button type="submit">Buscar</button>
+    </form>
+  </div>
+
+  <div *ngIf="selectedBook">
+    <h3>Editar livro</h3>
+    <form (ngSubmit)="updateBook()" class="formulario">
+      <label>ISBN:
+        <input [(ngModel)]="selectedBook.isbn" name="isbn" required>
+      </label>
+      <label>Página:
+        <input [(ngModel)]="selectedBook.pages" name="pages" type="number"
+          required>
+      </label>
+      <label>Capa:
+        <input [(ngModel)]="selectedBook.cover" name="cover" type="text"
+          required>
+      </label>
+      <label>Registro:
+        <input [(ngModel)]="selectedBook.register" name="register" type="datetime-local">
+      </label>
+      <button type="submit">Salvar</button>
+      <button type="button" (click)="clearSelection()">Cancelar</button>
+    </form>
+  </div>
+
+  <div *ngIf="showAddForm">
+    <h3>Adicionar livro</h3>
+    <form (ngSubmit)="createBook()" class="formulario">
+      <label>ISBN:
+        <input [(ngModel)]="newBook.isbn" name="isbn" required>
+      </label>
+      <label>Página:
+        <input [(ngModel)]="newBook.pages" name="pages" type="number" required>
+      </label>
+      <label>Capa:
+        <input [(ngModel)]="newBook.cover" name="cover" type="text" required>
+      </label>
+      <button type="submit">Adicionar</button>
+      <button type="button" (click)="cancelAddBook()">Cancelar</button>
+    </form>
+  </div>
+
+  <div class="lista">
+    <div class="formulario_adicionar">
+      <h3>Lista de livros</h3>
+      <button *ngIf="!showAddForm" (click)="startAddBook()" class="botao_add_livro">Adicionar livro</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ISBN</th>
+          <th>Páginas</th>
+          <th>Capa</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{ book.isbn }}</td>
+          <td>{{ book.pages }}</td>
+          <td>{{ book.cover }}</td>
+          <td>{{ book.register | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>
+            <div class="botoes">
+              <button (click)="selectBook(book)">Editar</button>
+              <button (click)="deleteBook(book.id!)">Deletar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
