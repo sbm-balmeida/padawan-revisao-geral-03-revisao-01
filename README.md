@@ -1,6 +1,6 @@
 # Bem-vindos ao meu repositório!
 
->Status: **Desenvolvendo** 💻
+>Status: **Finalizado** ✔️
 
 ##
 
@@ -11,12 +11,12 @@ Repositório criado para aplicação prática dos conceitos dos cursos do plano 
 ##
 
 ##### **Back-end:** 
-
+https://github.com/user-attachments/assets/fd589ef3-f914-44fa-ada8-addd87b1cfd0
 
 ##
 
 ##### **Front-end:** 
-
+https://github.com/user-attachments/assets/07f22303-575a-4d9e-8d6a-cdae2f3b62bf
 
 ##
 
