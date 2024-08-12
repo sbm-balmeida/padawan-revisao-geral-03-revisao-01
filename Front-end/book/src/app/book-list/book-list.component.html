@@ -13,8 +13,12 @@
       <label>Capa:
         <input [(ngModel)]="searchParams.cover" name="cover" type="text">
       </label>
-      <label>Registro:
-        <input [(ngModel)]="searchParams.register" name="register"
+      <label>Data inícial:
+        <input [(ngModel)]="searchParams.startDate" name="startDate"
+          type="datetime-local">
+      </label>
+      <label>Data final:
+        <input [(ngModel)]="searchParams.endDate" name="endDate"
           type="datetime-local">
       </label>
       <button type="button" (click)="clearFilters()">Limpar</button>

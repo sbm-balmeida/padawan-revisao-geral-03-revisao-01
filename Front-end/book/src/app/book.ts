@@ -1,5 +1,3 @@
-import { Data } from "@angular/router";
-
 export class Book {
     id?: number;
     isbn?: string;

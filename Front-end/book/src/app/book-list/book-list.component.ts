@@ -80,14 +80,34 @@ export class BookListComponent implements OnInit {
   }
 
   searchBooks(): void {
-    this.bookService.searchBooks(this.searchParams).subscribe((data: Book[]) => {
+    const formattedSearchParams = {
+      isbn: this.searchParams.isbn || null,
+      /*
+      Verifica se o campo isbn dentro de searchParams contém um valor. Se sim, esse valor é incluído em formattedSearchParams; caso contrário, null é atribuído.
+      */
+      pages: this.searchParams.pages || null,
+      cover: this.searchParams.cover || null,
+      startDate: this.searchParams.startDate ? this.formatDateForInput(new Date(this.searchParams.startDate)) : null,
+      /*
+      Verifica se o campo startDate foi preenchido pelo usuário. Se sim, a data é formatada usando a função formatDateForInput e o resultado é atribuído ao formattedSearchParams. Se o campo estiver vazio, null será usado.
+
+      new Date(this.searchParams.startDate) -> cria um objeto Date a partir do valor fornecido, e this.formatDateForInput formata essa data no formato esperado pelo back-end.
+      */
+      endDate: this.searchParams.endDate ? this.formatDateForInput(new Date(this.searchParams.endDate)) : null
+    };
+  
+    this.bookService.searchBooks(formattedSearchParams).subscribe((data: Book[]) => {
       this.books = data;
     });
     /*
-    Chama searchBooks() do BookService passando searchParams como parâmetro. A lista books é atualizada com o resultado da busca.
+    this.bookService.searchBooks(formattedSearchParams) -> Chama o método searchBooks no serviço BookService, passando formattedSearchParams como argumento. Esse método é responsável por enviar uma requisição HTTP ao back-end com os parâmetros de busca.
+
+    .subscribe((data: Book[]) => { this.books = data; }) -> O método subscribe é usado para assinar o Observable retornado pelo serviço. Quando a resposta da busca é recebida (ou seja, quando os dados são carregados do back-end), a função de callback é executada.
+
+    A função de callback recebe os dados (neste caso, uma lista de objetos Book), e os armazena na variável this.books, que é a lista de livros exibida no componente.
     */
   }
-
+  
   selectBook(book: Book): void {
     this.selectedBook = { 
       ...book, 

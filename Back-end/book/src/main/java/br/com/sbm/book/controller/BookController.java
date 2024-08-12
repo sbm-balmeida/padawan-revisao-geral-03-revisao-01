@@ -64,7 +64,8 @@ public class BookController {
             @RequestParam(required = false) String isbn,
             @RequestParam(required = false) Integer pages,
             @RequestParam(required = false) String cover,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime register) throws SQLException {
-        return ResponseEntity.ok(bookService.searchBooks(isbn, pages, cover, register));
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) throws SQLException {
+        return ResponseEntity.ok(bookService.searchBooks(isbn, pages, cover, startDate, endDate));
     }
 }
