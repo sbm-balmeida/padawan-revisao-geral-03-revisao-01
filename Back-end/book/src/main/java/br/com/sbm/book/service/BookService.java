@@ -116,7 +116,7 @@ public class BookService {
         }
     }
     
-    public List<Book> searchBooks(String isbn, Integer pages, String cover, LocalDateTime register) throws SQLException {
+    public List<Book> searchBooks(String isbn, Integer pages, String cover, LocalDateTime startDate, LocalDateTime endDate) throws SQLException {
         List<Book> books = new ArrayList<>();
         StringBuilder sql = new StringBuilder("SELECT * FROM book WHERE 1=1");
 
@@ -129,8 +129,8 @@ public class BookService {
         if (cover != null && !cover.isEmpty()) {
             sql.append(" AND cover LIKE ?");
         }
-        if (register != null) {
-            sql.append(" AND register >= ? AND register < ?");
+        if (startDate != null && endDate != null) {
+            sql.append(" AND register >= ? AND register <= ?");
         }
 
         try (Connection connection = dataSource.getConnection();
@@ -147,9 +147,9 @@ public class BookService {
             if (cover != null && !cover.isEmpty()) {
                 pstm.setString(paramIndex++, "%" + cover + "%");
             }
-            if (register != null) {
-                pstm.setObject(paramIndex++, register.withSecond(0).withNano(0));  // Ignora os segundos e nanosegundos
-                pstm.setObject(paramIndex++, register.withSecond(0).withNano(0).plusMinutes(1));  // Até um minuto depois
+            if (startDate != null && endDate != null) {
+                pstm.setObject(paramIndex++, startDate.withSecond(0).withNano(0));
+                pstm.setObject(paramIndex++, endDate.withSecond(0).withNano(0)); 
             }
 
             try (ResultSet rst = pstm.executeQuery()) {

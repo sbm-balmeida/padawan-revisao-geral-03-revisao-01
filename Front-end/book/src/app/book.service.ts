@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book } from './book';
 
@@ -33,6 +33,25 @@ export class BookService {
   }
 
   searchBooks(params: any): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.apiUrl}/search`, { params });
+    let httpParams = new HttpParams();
+
+    if (params.isbn) {
+      httpParams = httpParams.set('isbn', params.isbn);
+    }
+    if (params.pages) {
+      httpParams = httpParams.set('pages', params.pages);
+    }
+    if (params.cover) {
+      httpParams = httpParams.set('cover', params.cover);
+    }
+    if (params.startDate) {
+      httpParams = httpParams.set('startDate', params.startDate);
+    }
+    if (params.endDate) {
+      httpParams = httpParams.set('endDate', params.endDate);
+    }
+
+    return this.http.get<Book[]>(`${this.apiUrl}/search`, { params: httpParams });
   }
+
 }
