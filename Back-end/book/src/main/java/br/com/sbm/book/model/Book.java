@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Table("book")
 public class Book {
 
@@ -15,7 +13,6 @@ public class Book {
 	private String isbn;
 	private Integer pages;
 	private String cover;
-	//@JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
 	private LocalDateTime register;
 	
 	public Book() {

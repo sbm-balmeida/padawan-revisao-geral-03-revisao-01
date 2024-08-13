@@ -16,7 +16,7 @@ https://github.com/user-attachments/assets/fd589ef3-f914-44fa-ada8-addd87b1cfd0
 ##
 
 ##### **Front-end:** 
-https://github.com/user-attachments/assets/07f22303-575a-4d9e-8d6a-cdae2f3b62bf
+https://github.com/user-attachments/assets/9835879b-e013-4cf3-9027-bcda52cc1dd1
 
 ##
 
