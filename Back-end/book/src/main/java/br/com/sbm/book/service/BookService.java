@@ -130,8 +130,8 @@ public class BookService {
             sql.append(" AND cover LIKE ?");
         }
         if (startDate != null && endDate != null) {
-            sql.append(" AND register >= ? AND register <= ?");
-        }
+            sql.append(" AND register BETWEEN ? AND ?");
+        } 
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement pstm = connection.prepareStatement(sql.toString())) {
@@ -149,7 +149,11 @@ public class BookService {
             }
             if (startDate != null && endDate != null) {
                 pstm.setObject(paramIndex++, startDate.withSecond(0).withNano(0));
-                pstm.setObject(paramIndex++, endDate.withSecond(0).withNano(0)); 
+                pstm.setObject(paramIndex++, endDate.withSecond(0).withNano(0));
+            } else if (startDate != null) {
+                pstm.setObject(paramIndex++, startDate.withSecond(0).withNano(0));
+            } else if (endDate != null) {
+                pstm.setObject(paramIndex++, endDate.withSecond(0).withNano(0));
             }
 
             try (ResultSet rst = pstm.executeQuery()) {
