@@ -87,7 +87,7 @@
           <td>{{ book.register | date:'dd/MM/yyyy HH:mm' }}</td>
           <td>
             <div class="botoes">
-              <button (click)="selectBook(book)">Editar</button>
+              <button (click)="selectBook(book)" class="button">Editar</button>
               <button (click)="deleteBook(book.id!)">Deletar</button>
             </div>
           </td>
